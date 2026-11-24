@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marisukh Game Center | Cozy Fall Gaming Cafe, Coffee &amp; Pizza 🍂☕🍕</title>
+
+  <!-- Google Fonts: Fredoka (Cute Cozy Headings) & Nunito (Warm Readable Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN for responsive utility classes -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome for clean cafe, food, and social icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <script>
+    // Map Tailwind color utilities directly to our custom fall cafe CSS variables
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Nunito', 'sans-serif'],
+            display: ['Fredoka', 'sans-serif'],
+          },
+          colors: {
+            maple: 'var(--color-maple)',
+            'maple-soft': 'var(--color-maple-soft)',
+            cinnamon: 'var(--color-cinnamon)',
+            pumpkin: 'var(--color-pumpkin)',
+            'pumpkin-soft': 'var(--color-pumpkin-soft)',
+            sage: 'var(--color-sage)',
+            'sage-soft': 'var(--color-sage-soft)',
+            chestnut: 'var(--color-chestnut)',
+            latte: 'var(--color-latte)',
+            cream: 'var(--bg-primary)',
+            'cream-card': 'var(--bg-surface)',
+            'cream-pill': 'var(--bg-elevated)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ==========================================================================
+       1. FALL CAFE COLOR PALETTE & THEME VARIABLES (EASY TO CUSTOMIZE!)
+       Edit any hex code below to tweak your autumn gaming cafe palette.
+       ========================================================================== */
+    :root {
+      /* Core Fall Cafe Palette */
+      --color-maple: #D96B27;           /* Warm Autumn Maple */
+      --color-maple-soft: #FDE8D7;      /* Soft Maple Cream */
+      --color-cinnamon: #B84A27;        /* Spiced Cinnamon Accent */
+      --color-pumpkin: #E88D3F;         /* Pumpkin Cream Spice */
+      --color-pumpkin-soft: #FFF0DF;    /* Whipped Pumpkin Foam */
+      --color-sage: #7A9E7E;            /* Soft Autumn Sage */
+      --color-sage-soft: #E7F0E8;       /* Cozy Sage Leaf Tint */
+      --color-chestnut: #3E2723;        /* Toasted Chestnut Ink Text */
+      --color-latte: #6F564B;           /* Warm Cafe Latte Muted Text */
+
+      /* Default Mode: "Cinnamon Maple" */
+      --bg-primary: #FDF7F0;            /* Pumpkin Cream & Oat Milk Canvas */
+      --bg-surface: #FFFFFF;            /* Warm Cream Card Surface */
+      --bg-elevated: #FDEEE2;           /* Cinnamon Maple Pill Surface */
+      --accent-primary: #D96B27;        /* Active Primary Accent */
+      --accent-secondary: #7A9E7E;      /* Active Secondary Accent */
+      --border-fall: #EED8C5;           /* Cozy Crust & Linen Border */
+      --dot-color: rgba(217, 107, 39, 0.14);
+      --card-shadow: 0 14px 32px -10px rgba(62, 39, 35, 0.14);
+    }
+
+    /* Alternate Mode: "Pumpkin Sage" (Toggled via the Navbar Mode Switcher!) */
+    body.pumpkin-sage-mode {
+      --bg-primary: #F6F8F3;            /* Soft Sage & Cream Mist */
+      --bg-surface: #FFFFFF;            /* Pure Cream Card Surface */
+      --bg-elevated: #E6EFE6;           /* Soft Sage Pill Surface */
+      --accent-primary: #6B9071;        /* Cozy Autumn Sage Accent */
+      --accent-secondary: #D96B27;      /* Maple & Pizza Crust Pop Accent */
+      --border-fall: #D3E0D3;           /* Sage Meadow Border */
+      --dot-color: rgba(107, 144, 113, 0.15);
+      --card-shadow: 0 14px 32px -10px rgba(62, 39, 35, 0.14);
+    }
+
+    /* ==========================================================================
+       2. COZY TYPOGRAPHY, AUTUMN DOT PATTERN & PLAYFUL HOVER EFFECTS
+       ========================================================================== */
+    body {
+      background-color: var(--bg-primary);
+      color: var(--color-chestnut);
+      font-family: 'Nunito', sans-serif;
+      transition: background-color 0.4s ease, color 0.3s ease;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .font-display {
+      font-family: 'Fredoka', sans-serif;
+      letter-spacing: 0.01em;
+    }
+
+    /* Cozy Fall Polka-Dot Background */
+    .fall-polka-bg {
+      background-image: radial-gradient(var(--dot-color) 2.2px, transparent 2.2px);
+      background-size: 28px 28px;
+    }
+
+    /* Gentle Floating Animation for Cute Fall Badges */
+    @keyframes floatLeaf {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-9px) rotate(4deg); }
+    }
+    .animate-float-leaf {
+      animation: floatLeaf 4.6s ease-in-out infinite;
+    }
+    .animate-float-leaf-slow {
+      animation: floatLeaf 6s ease-in-out 1.4s infinite;
+    }
+
+    /* Cute Rounded Fall Cards with Soft Bounce Hover */
+    .fall-card {
+      background-color: var(--bg-surface);
+      border: 2px solid var(--border-fall);
+      box-shadow: var(--card-shadow);
+      transition: transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .fall-card:hover {
+      transform: translateY(-8px) scale(1.01);
+    }
+    .fall-card.hover-maple:hover {
+      border-color: var(--color-maple);
+      box-shadow: 0 18px 36px -10px rgba(217, 107, 39, 0.25);
+    }
+    .fall-card.hover-sage:hover {
+      border-color: var(--color-sage);
+      box-shadow: 0 18px 36px -10px rgba(122, 158, 126, 0.26);
+    }
+    .fall-card.hover-pumpkin:hover {
+      border-color: var(--color-pumpkin);
+      box-shadow: 0 18px 36px -10px rgba(232, 141, 63, 0.26);
+    }
+
+    /* Range Slider Accent Sync */
+    input[type="range"] {
+      accent-color: var(--accent-primary);
+    }
+
+    /* Cozy Form Inputs */
+    .cozy-input {
+      background-color: var(--bg-primary);
+      color: var(--color-chestnut);
+      border: 2px solid var(--border-fall);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .cozy-input:focus {
+      outline: none;
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 4px rgba(217, 107, 39, 0.15);
+    }
+    .cozy-input.input-error {
+      border-color: #C92A2A;
+      box-shadow: 0 0 0 4px rgba(201, 42, 42, 0.14);
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-maple-soft selection:text-chestnut">
+
+  <!-- ========================================================================
+       STICKY FALL CAFE NAVIGATION BAR
+       Customize the brand name or navigation links right below!
+       ======================================================================== -->
+  <header class="sticky top-0 z-50 backdrop-blur-md border-b-2 transition-colors duration-300"
+          style="background-color: color-mix(in srgb, var(--bg-primary) 92%, transparent); border-color: var(--border-fall);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+
+        <!-- Brand Logo & Cute SVG Coffee + Controller Emblem -->
+        <a href="#home" class="flex items-center gap-3 group focus:outline-none">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-maple-soft via-pumpkin-soft to-sage-soft p-1 shadow-sm border-2 border-white group-hover:rotate-6 transition-transform">
+            <div class="w-full h-full rounded-xl bg-white flex items-center justify-center">
+              <!-- Custom Cute SVG Autumn Leaf + Gamepad Icon -->
+              <svg class="w-7 h-7" viewBox="0 0 32 32" fill="none">
+                <rect x="3" y="10" width="26" height="14" rx="7" fill="#FDE8D7" stroke="#D96B27" stroke-width="2.2"/>
+                <path d="M9.5 15v4M7.5 17h4" stroke="#3E2723" stroke-width="2.2" stroke-linecap="round"/>
+                <circle cx="21.5" cy="15.5" r="1.4" fill="#7A9E7E"/>
+                <circle cx="24" cy="18" r="1.4" fill="#E88D3F"/>
+                <path d="M16 4c3 2.2 4.5 5 0 7.5-4.5-2.5-3-5.3 0-7.5z" fill="#D96B27"/>
+              </svg>
+            </div>
+          </div>
+          <div>
+            <span class="font-display font-bold text-lg sm:text-xl tracking-tight text-chestnut block leading-none">
+              Marisukh Game Center
+            </span>
+            <span class="text-xs font-extrabold tracking-wide text-maple flex items-center gap-1 mt-0.5">
+              <span>Coffee, Pizza &amp; Cozy Play</span>
+              <span>🍂</span>
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-6 lg:gap-7 font-bold text-sm text-chestnut">
+          <a href="#home" class="hover:text-maple transition-colors py-2">Home</a>
+          <a href="#stations" class="hover:text-maple transition-colors py-2">Stations &amp; Cafe Menu</a>
+          <a href="#rates" class="hover:text-maple transition-colors py-2">Rates &amp; Bundles</a>
+          <a href="#contact" class="hover:text-maple transition-colors py-2">Booking/Contact</a>
+        </nav>
+
+        <!-- Right Controls: Theme Switcher ("Cinnamon Maple" vs "Pumpkin Sage") + CTA + Mobile Menu -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          <button id="themeToggleBtn"
+                  type="button"
+                  aria-label="Switch fall cafe theme mode"
+                  class="flex items-center gap-2 px-3.5 py-2 rounded-full text-xs sm:text-sm font-extrabold border-2 shadow-sm transition-all hover:scale-105 cursor-pointer"
+                  style="background-color: var(--bg-elevated); border-color: var(--border-fall); color: var(--color-chestnut);">
+            <span id="themeEmoji" class="text-base">🍁</span>
+            <span id="themeLabel" class="hidden sm:inline">Cinnamon Maple</span>
+          </button>
+
+          <a href="#contact"
+             class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-display font-semibold text-sm text-white shadow-md transition-all hover:-translate-y-0.5"
+             style="background-color: var(--accent-primary);">
+            <span>Book a Table</span>
+            <span>🍕</span>
+          </a>
+
+          <!-- Mobile Hamburger Menu Button -->
+          <button id="mobileMenuBtn"
+                  type="button"
+                  aria-label="Open menu"
+                  class="md:hidden w-10 h-10 rounded-full border-2 flex items-center justify-center text-chestnut"
+                  style="background-color: var(--bg-surface); border-color: var(--border-fall);">
+            <i id="mobileMenuIcon" class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Drawer -->
+    <div id="mobileMenu" class="hidden md:hidden border-t-2 px-4 pt-3 pb-5 space-y-2"
+         style="background-color: var(--bg-surface); border-color: var(--border-fall);">
+      <a href="#home" class="mobile-nav-link block px-4 py-3 rounded-2xl font-bold hover:bg-maple-soft/60 transition-colors">🍂 Home</a>
+      <a href="#stations" class="mobile-nav-link block px-4 py-3 rounded-2xl font-bold hover:bg-maple-soft/60 transition-colors">☕ Stations &amp; Cafe Menu</a>
+      <a href="#rates" class="mobile-nav-link block px-4 py-3 rounded-2xl font-bold hover:bg-maple-soft/60 transition-colors">🍕 Rates &amp; Bundles</a>
+      <a href="#contact" class="mobile-nav-link block px-4 py-3 rounded-2xl font-bold hover:bg-maple-soft/60 transition-colors">💌 Booking/Contact</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ======================================================================
+         FALL CAFE HERO SECTION (HOME)
+         Cozy autumn gaming cafe banner with title, tagline, and CTA button.
+         ====================================================================== -->
+    <section id="home" class="relative overflow-hidden fall-polka-bg py-16 sm:py-24 lg:py-28">
+      <!-- Soft Autumn Glows -->
+      <div class="pointer-events-none absolute -top-20 -left-20 w-80 h-80 rounded-full bg-maple-soft/80 blur-3xl"></div>
+      <div class="pointer-events-none absolute top-1/2 -right-24 w-96 h-96 rounded-full bg-sage-soft/85 blur-3xl"></div>
+      <div class="pointer-events-none absolute bottom-0 left-1/3 w-72 h-72 rounded-full bg-pumpkin-soft/80 blur-3xl"></div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-12 gap-12 items-center">
+
+          <!-- Left Hero Copy -->
+          <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border-2 shadow-sm text-xs sm:text-sm font-extrabold"
+                 style="background-color: var(--bg-surface); border-color: var(--border-fall);">
+              <span>☕</span>
+              <span class="text-chestnut">Fresh Roasted Coffee • Wood-Fired Style Pizza • Fall Comfort</span>
+              <span class="px-2 py-0.5 rounded-full bg-sage-soft text-chestnut text-xs">Cozy Season 🍂</span>
+            </div>
+
+            <h1 class="font-display font-bold text-4xl sm:text-6xl lg:text-[64px] text-chestnut leading-[1.08]">
+              Marisukh
+              <span class="block" style="color: var(--accent-primary);">
+                Gaming Center
+              </span>
+            </h1>
+
+            <p class="text-base sm:text-xl text-latte max-w-2xl mx-auto lg:mx-0 leading-relaxed font-semibold">
+              Crisp autumn evenings, fresh-brewed cinnamon &amp; maple lattes, bubbling wood-fired style pizzas, and cozy gaming booths where warm fall community comes alive. 🍕🍁
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+              <a href="#stations"
+                 class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full font-display font-semibold text-base sm:text-lg text-white shadow-lg transition-all hover:-translate-y-1 hover:scale-105"
+                 style="background-color: var(--accent-primary);">
+                <span>Explore Stations &amp; Cafe Menu</span>
+                <span>☕</span>
+              </a>
+              <a href="#rates"
+                 class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-white border-2 font-display font-semibold text-base sm:text-lg text-chestnut shadow-sm transition-all hover:-translate-y-1"
+                 style="border-color: var(--border-fall);">
+                <span>See Pizza &amp; Play Bundles</span>
+                <span>🍕</span>
+              </a>
+            </div>
+
+            <!-- Cozy Fall Cafe Highlights -->
+            <div class="grid grid-cols-3 gap-3 sm:gap-5 pt-6 max-w-lg mx-auto lg:mx-0">
+              <div class="p-3.5 rounded-3xl bg-white/95 border-2 text-center shadow-sm" style="border-color: var(--border-fall);">
+                <p class="font-display font-bold text-lg sm:text-xl text-maple">240Hz Rigs</p>
+                <p class="text-xs font-bold text-latte">Cozy Desk Service</p>
+              </div>
+              <div class="p-3.5 rounded-3xl bg-white/95 border-2 text-center shadow-sm" style="border-color: var(--border-fall);">
+                <p class="font-display font-bold text-lg sm:text-xl text-sage">Artisan Brews</p>
+                <p class="text-xs font-bold text-latte">Spiced Fall Lattes</p>
+              </div>
+              <div class="p-3.5 rounded-3xl bg-white/95 border-2 text-center shadow-sm" style="border-color: var(--border-fall);">
+                <p class="font-display font-bold text-lg sm:text-xl text-cinnamon">Hot Pizza</p>
+                <p class="text-xs font-bold text-latte">Crispy Fall Pies</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Hero Cozy Fall Showcase Card -->
+          <div class="lg:col-span-5">
+            <div class="relative rounded-[36px] p-6 sm:p-8 bg-white border-4 shadow-xl"
+                 style="border-color: var(--border-fall);">
+
+              <!-- Floating Cute Fall Stickers -->
+              <div class="absolute -top-5 -right-3 px-4 py-1.5 rounded-full bg-pumpkin-soft text-chestnut font-display font-bold text-xs shadow-md animate-float-leaf border-2 border-white">
+                🍂 Spiced Maple Latte + Game!
+              </div>
+              <div class="absolute -bottom-4 -left-3 px-4 py-1.5 rounded-full bg-sage-soft text-chestnut font-display font-bold text-xs shadow-md animate-float-leaf-slow border-2 border-white">
+                🍕 Fresh Pizza Slices at Your Booth
+              </div>
+
+              <div class="rounded-3xl p-6 mb-6 text-center border-2"
+                   style="background-color: var(--bg-elevated); border-color: var(--border-fall);">
+                <div class="w-20 h-20 mx-auto rounded-3xl bg-white shadow-md flex items-center justify-center text-4xl mb-4 border-2"
+                     style="border-color: var(--border-fall);">
+                  ☕
+                </div>
+                <h3 class="font-display font-bold text-xl sm:text-2xl text-chestnut mb-1.5">
+                  Autumn Hearth &amp; Gaming Lounge
+                </h3>
+                <p class="text-sm text-latte font-semibold">
+                  Sip spiced pumpkin &amp; maple coffee, share cheesy roasted-veggie or pepperoni pizza, and play your favorite games in warm autumn comfort.
+                </p>
+              </div>
+
+              <!-- Cafe Menu & Game Pairings -->
+              <div class="space-y-3">
+                <p class="text-xs font-extrabold uppercase tracking-wider text-latte">
+                  Fall Kitchen &amp; Game Favorites:
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3.5 py-1.5 rounded-full text-xs font-extrabold bg-maple-soft text-chestnut">Maple Cinnamon Latte</span>
+                  <span class="px-3.5 py-1.5 rounded-full text-xs font-extrabold bg-pumpkin-soft text-chestnut">Roasted Pumpkin Pizza</span>
+                  <span class="px-3.5 py-1.5 rounded-full text-xs font-extrabold bg-sage-soft text-chestnut">Sage &amp; Mushroom Melt</span>
+                  <span class="px-3.5 py-1.5 rounded-full text-xs font-extrabold bg-maple-soft text-chestnut">Cozy Co-Op &amp; FPS</span>
+                  <span class="px-3.5 py-1.5 rounded-full text-xs font-extrabold bg-pumpkin-soft text-chestnut">Card &amp; Party Games</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         STATIONS & CAFE MENU SECTION
+         Responsive 4-card grid combining cozy gaming stations & fall cafe fare.
+         ====================================================================== -->
+    <section id="stations" class="py-20 sm:py-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+          <span class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-wider bg-sage-soft text-chestnut">
+            <span>🍁</span>
+            <span>Play, Sip &amp; Feast</span>
+          </span>
+          <h2 class="font-display font-bold text-3xl sm:text-5xl text-chestnut">
+            Stations &amp; <span style="color: var(--accent-primary);">Cafe Menu</span>
+          </h2>
+          <p class="text-base sm:text-lg text-latte font-semibold">
+            Every corner pairs smooth gaming setups with fresh-brewed espresso drinks, golden wood-fired style pizzas, and warm autumn comfort bites.
+          </p>
+        </div>
+
+        <!-- Responsive 4-Card Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7">
+
+          <!-- Card 1: Cozy PC & Coffee Bar -->
+          <article class="fall-card hover-maple rounded-[32px] p-6 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-14 h-14 rounded-2xl bg-maple-soft text-2xl flex items-center justify-center shadow-inner">
+                  ☕
+                </div>
+                <span class="px-3 py-1 rounded-full text-xs font-extrabold bg-maple-soft text-chestnut">
+                  240Hz + Espresso Bar
+                </span>
+              </div>
+              <h3 class="font-display font-bold text-xl text-chestnut mb-2">
+                Cozy PC &amp; Coffee Bar
+              </h3>
+              <p class="text-sm text-latte font-semibold leading-relaxed mb-5">
+                High-refresh gaming rigs right beside our espresso counter—enjoy hot or iced Cinnamon Maple Lattes, Chestnut Mochas, and butter croissants while you play.
+              </p>
+            </div>
+            <div class="pt-4 border-t-2 space-y-2 text-xs font-extrabold text-chestnut" style="border-color: var(--border-fall);">
+              <div class="flex items-center gap-2">
+                <span class="text-maple">🍁</span>
+                <span>Spiced Pumpkin Cream Cold Brew</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-maple">🍁</span>
+                <span>Warm Cinnamon Roll &amp; Pastry Bites</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2: Hearthside Console & Pizza Booths -->
+          <article class="fall-card hover-pumpkin rounded-[32px] p-6 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-14 h-14 rounded-2xl bg-pumpkin-soft text-2xl flex items-center justify-center shadow-inner">
+                  🍕
+                </div>
+                <span class="px-3 py-1 rounded-full text-xs font-extrabold bg-pumpkin-soft text-chestnut">
+                  Console + Hot Pizza
+                </span>
+              </div>
+              <h3 class="font-display font-bold text-xl text-chestnut mb-2">
+                Hearthside Console &amp; Pizza Booths
+              </h3>
+              <p class="text-sm text-latte font-semibold leading-relaxed mb-5">
+                Sink into plush autumn booths with 4K console setups and wide pizza tables serving crisp Honey-Garlic Pepperoni, Roasted Butternut &amp; Goat Cheese, and Classic Margherita pies.
+              </p>
+            </div>
+            <div class="pt-4 border-t-2 space-y-2 text-xs font-extrabold text-chestnut" style="border-color: var(--border-fall);">
+              <div class="flex items-center gap-2">
+                <span class="text-pumpkin">🍕</span>
+                <span>10" &amp; 14" Golden Crust Pizzas</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-pumpkin">🍕</span>
+                <span>Co-Op Party &amp; Couch Favorites</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3: Autumn Arcade & Snack Corner -->
+          <article class="fall-card hover-sage rounded-[32px] p-6 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-14 h-14 rounded-2xl bg-sage-soft text-2xl flex items-center justify-center shadow-inner">
+                  🥨
+                </div>
+                <span class="px-3 py-1 rounded-full text-xs font-extrabold bg-sage-soft text-chestnut">
+                  Arcade &amp; Comfort Food
+                </span>
+              </div>
+              <h3 class="font-display font-bold text-xl text-chestnut mb-2">
+                Autumn Arcade &amp; Snack Corner
+              </h3>
+              <p class="text-sm text-latte font-semibold leading-relaxed mb-5">
+                Play retro rhythm games, claw machines, and tabletop classics while munching warm soft pretzels, rosemary potato wedges, and creamy tomato soup bowls.
+              </p>
+            </div>
+            <div class="pt-4 border-t-2 space-y-2 text-xs font-extrabold text-chestnut" style="border-color: var(--border-fall);">
+              <div class="flex items-center gap-2">
+                <span class="text-sage">🌿</span>
+                <span>Warm Pretzels &amp; Cheese Dip</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-sage">🌿</span>
+                <span>Seasonal Plush &amp; Board Games</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4: Private Squad & Pizza Table -->
+          <article class="fall-card hover-maple rounded-[32px] p-6 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-14 h-14 rounded-2xl bg-maple-soft text-2xl flex items-center justify-center shadow-inner">
+                  🥧
+                </div>
+                <span class="px-3 py-1 rounded-full text-xs font-extrabold bg-maple-soft text-chestnut">
+                  VIP 5-Seat + Feast
+                </span>
+              </div>
+              <h3 class="font-display font-bold text-xl text-chestnut mb-2">
+                Private Squad &amp; Pizza Table
+              </h3>
+              <p class="text-sm text-latte font-semibold leading-relaxed mb-5">
+                A dedicated warm-lit room for 5-player squads, autumn watch parties, or study-and-feast nights with dedicated pizza platters, coffee carafes, and apple pie bites.
+              </p>
+            </div>
+            <div class="pt-4 border-t-2 space-y-2 text-xs font-extrabold text-chestnut" style="border-color: var(--border-fall);">
+              <div class="flex items-center gap-2">
+                <span class="text-maple">🍁</span>
+                <span>5 Pro Rigs + Feast Table Space</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-maple">🍁</span>
+                <span>Carafe Coffee &amp; Warm Apple Tart</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         RATES & BUNDLES SECTION + INTERACTIVE CALCULATOR
+         Beginners: Edit placeholder prices in the cards below AND in <script>!
+         ====================================================================== -->
+    <section id="rates" class="py-20 sm:py-24 border-y-2" style="background-color: var(--bg-surface); border-color: var(--border-fall);">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+          <span class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-wider bg-pumpkin-soft text-chestnut">
+            <span>🍕</span>
+            <span>Cozy Combos &amp; Editable Rates</span>
+          </span>
+          <h2 class="font-display font-bold text-3xl sm:text-5xl text-chestnut">
+            Rates &amp; <span style="color: var(--accent-primary);">Fall Bundles</span>
+          </h2>
+          <p class="text-base sm:text-lg text-latte font-semibold">
+            Simple hourly play paired with fresh coffee and hot pizza bundles. Customize prices easily in the HTML or script comments.
+          </p>
+        </div>
+
+        <!-- ==================================================================
+             3 PRICING & BUNDLE CARDS (EDIT PLACEHOLDER PRICES HERE)
+             ================================================================== -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-7 mb-16">
+
+          <!-- Bundle 1: Hourly Play + Coffee/Pizza Combo -->
+          <div class="rounded-[32px] p-7 sm:p-8 border-2 flex flex-col justify-between transition-transform hover:-translate-y-1"
+               style="background-color: var(--bg-primary); border-color: var(--border-fall);">
+            <div>
+              <span class="inline-block px-3.5 py-1 rounded-full text-xs font-extrabold bg-sage-soft text-chestnut mb-4">
+                ☕ Hourly Play + Coffee/Pizza Combo
+              </span>
+              <h3 class="font-display font-bold text-2xl text-chestnut mb-1">Morning &amp; Afternoon Brew</h3>
+              <p class="text-sm text-latte font-semibold mb-5">Great for solo play, cozy study sessions, or a quick slice break.</p>
+
+              <!-- EDIT PLACEHOLDER PRICE HERE -->
+              <div class="flex items-baseline gap-2 mb-6">
+                <span class="font-display font-bold text-4xl text-chestnut">₱145</span>
+                <span class="text-xs font-bold text-latte">/ 1 hr PC + Fall Latte</span>
+              </div>
+
+              <ul class="space-y-3 text-xs sm:text-sm font-bold text-chestnut mb-7">
+                <li class="flex items-center gap-2"><span class="text-sage">✔</span> 1 Hour Cozy PC Rig (₱80/hr base)</li>
+                <li class="flex items-center gap-2"><span class="text-sage">✔</span> Hot/Iced Maple or Pumpkin Latte</li>
+                <li class="flex items-center gap-2"><span class="text-sage">✔</span> Add 2 Personal Pizza Slices for <strong>+₱110</strong></li>
+              </ul>
+            </div>
+            <a href="#contact" class="w-full py-3.5 rounded-full bg-white border-2 text-center font-display font-semibold text-sm text-chestnut hover:bg-sage-soft transition-colors" style="border-color: var(--border-fall);">
+              Reserve Brew &amp; Play
+            </a>
+          </div>
+
+          <!-- Bundle 2: Featured Barkada Pizza & Squad Bundle -->
+          <div class="relative rounded-[32px] p-7 sm:p-8 border-4 flex flex-col justify-between shadow-xl transform lg:-translate-y-2"
+               style="background-color: var(--bg-elevated); border-color: var(--accent-primary);">
+            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-white font-display font-semibold text-xs shadow-md whitespace-nowrap"
+                 style="background-color: var(--accent-primary);">
+              🍕 Most Popular Squad Feast
+            </div>
+
+            <div>
+              <span class="inline-block px-3.5 py-1 rounded-full text-xs font-extrabold bg-white text-chestnut mb-4 mt-1">
+                👯‍♀️ Barkada Pizza &amp; Squad Bundle
+              </span>
+              <h3 class="font-display font-bold text-2xl text-chestnut mb-1">4-Player Booth + 14" Pizza</h3>
+              <p class="text-sm text-latte font-semibold mb-5">Share a hot wood-fired style pizza, drinks, and console or squad play.</p>
+
+              <!-- EDIT PLACEHOLDER PRICE HERE -->
+              <div class="flex items-baseline gap-2 mb-6">
+                <span class="font-display font-bold text-4xl" style="color: var(--accent-primary);">₱690</span>
+                <span class="text-xs font-bold text-latte">/ 2 hrs + 14" Pizza &amp; 4 Drinks</span>
+              </div>
+
+              <ul class="space-y-3 text-xs sm:text-sm font-bold text-chestnut mb-7">
+                <li class="flex items-center gap-2"><span>🍁</span> 2 Hours Console Lounge or 4 Squad Rigs</li>
+                <li class="flex items-center gap-2"><span>🍁</span> 1 Large 14" Fall Pizza (choice of 2 toppings)</li>
+                <li class="flex items-center gap-2"><span>🍁</span> 4 Cozy Coffees or Iced Teas Included</li>
+              </ul>
+            </div>
+            <a href="#contact" class="w-full py-3.5 rounded-full text-center font-display font-semibold text-sm text-white shadow-md transition-opacity hover:opacity-95"
+               style="background-color: var(--accent-primary);">
+              Book Squad Pizza Bundle
+            </a>
+          </div>
+
+          <!-- Bundle 3: Fall Weekend Specials -->
+          <div class="rounded-[32px] p-7 sm:p-8 border-2 flex flex-col justify-between transition-transform hover:-translate-y-1"
+               style="background-color: var(--bg-primary); border-color: var(--border-fall);">
+            <div>
+              <span class="inline-block px-3.5 py-1 rounded-full text-xs font-extrabold bg-maple-soft text-chestnut mb-4">
+                🍂 Fall Weekend Specials
+              </span>
+              <h3 class="font-display font-bold text-2xl text-chestnut mb-1">Harvest Hearth &amp; VIP Pod</h3>
+              <p class="text-sm text-latte font-semibold mb-5">Fri–Sun seasonal treats, VIP cloud booth discounts, and cozy night sessions.</p>
+
+              <!-- EDIT PLACEHOLDER PRICE HERE -->
+              <div class="flex items-baseline gap-2 mb-6">
+                <span class="font-display font-bold text-4xl text-chestnut">₱520</span>
+                <span class="text-xs font-bold text-latte">/ 3 hrs + Pizza &amp; Pastry</span>
+              </div>
+
+              <ul class="space-y-3 text-xs sm:text-sm font-bold text-chestnut mb-7">
+                <li class="flex items-center gap-2"><span class="text-maple">✔</span> <strong>15% Off</strong> Fri–Sun Hourly &amp; VIP Booths</li>
+                <li class="flex items-center gap-2"><span class="text-maple">✔</span> Seasonal Harvest Pizza &amp; Cinnamon Bite</li>
+                <li class="flex items-center gap-2"><span class="text-maple">✔</span> Late-Night Cozy Cafe Hours till 2 AM</li>
+              </ul>
+            </div>
+            <a href="#contact" class="w-full py-3.5 rounded-full bg-white border-2 text-center font-display font-semibold text-sm text-chestnut hover:bg-maple-soft transition-colors" style="border-color: var(--border-fall);">
+              Grab Weekend Special
+            </a>
+          </div>
+
+        </div>
+
+        <!-- ==================================================================
+             INTERACTIVE RATE & CAFE COMBO CALCULATOR
+             ================================================================== -->
+        <div class="rounded-[36px] p-6 sm:p-10 border-2 shadow-lg"
+             style="background-color: var(--bg-primary); border-color: var(--border-fall);">
+          <div class="grid lg:grid-cols-12 gap-8 items-center">
+
+            <!-- Left Calculator Inputs -->
+            <div class="lg:col-span-7 space-y-6">
+              <div>
+                <span class="inline-flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-wider text-maple">
+                  <span>🧮</span>
+                  <span>Interactive Rate &amp; Cafe Combo Estimator</span>
+                </span>
+                <h3 class="font-display font-bold text-2xl sm:text-3xl text-chestnut mt-1">
+                  Build Your Station + Coffee/Pizza Estimate
+                </h3>
+              </div>
+
+              <div class="grid sm:grid-cols-2 gap-5">
+                <!-- Station Type -->
+                <div>
+                  <label for="calcStation" class="block text-xs font-extrabold uppercase tracking-wider text-latte mb-2">
+                    1. Station Type
+                  </label>
+                  <select id="calcStation" class="cozy-input w-full px-4 py-3.5 rounded-2xl font-bold text-sm cursor-pointer">
+                    <option value="80" data-name="Cozy PC & Coffee Bar">Cozy PC &amp; Coffee Bar (₱80/hr)</option>
+                    <option value="150" data-name="Hearthside Console Booth">Hearthside Console Booth (₱150/hr)</option>
+                    <option value="65" data-name="Autumn Arcade Corner">Autumn Arcade Corner (₱65/hr)</option>
+                    <option value="450" data-name="Private Squad & Pizza Table">Private Squad &amp; Pizza Table (₱450/hr)</option>
+                  </select>
+                </div>
+
+                <!-- Fall Bundle / Promo -->
+                <div>
+                  <label for="calcPromo" class="block text-xs font-extrabold uppercase tracking-wider text-latte mb-2">
+                    2. Fall Bundle or Promo
+                  </label>
+                  <select id="calcPromo" class="cozy-input w-full px-4 py-3.5 rounded-2xl font-bold text-sm cursor-pointer">
+                    <option value="none">Station Play Only (No Add-On)</option>
+                    <option value="coffee_combo">+ Coffee &amp; Pastry Combo (₱75 / unit)</option>
+                    <option value="barkada_pizza">+ Barkada Pizza Feast (₱320 flat bundle)</option>
+                    <option value="weekend_fall">Fall Weekend Special (15% Off Play)</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Sliders for Hours and Units -->
+              <div class="grid sm:grid-cols-2 gap-5 pt-1">
+                <div class="p-4 rounded-3xl bg-white border-2" style="border-color: var(--border-fall);">
+                  <div class="flex justify-between items-center mb-2">
+                    <label for="calcHours" class="text-xs font-extrabold uppercase tracking-wider text-latte">
+                      Hours
+                    </label>
+                    <span id="calcHoursDisplay" class="px-3 py-0.5 rounded-full bg-maple-soft font-display font-bold text-sm text-chestnut">
+                      2 hrs
+                    </span>
+                  </div>
+                  <input id="calcHours" type="range" min="1" max="12" value="2" class="w-full cursor-pointer" />
+                  <div class="flex justify-between text-[11px] font-bold text-latte mt-1">
+                    <span>1 hr</span>
+                    <span>6 hrs</span>
+                    <span>12 hrs</span>
+                  </div>
+                </div>
+
+                <div class="p-4 rounded-3xl bg-white border-2" style="border-color: var(--border-fall);">
+                  <div class="flex justify-between items-center mb-2">
+                    <label for="calcQty" class="text-xs font-extrabold uppercase tracking-wider text-latte">
+                      Units / Seats
+                    </label>
+                    <span id="calcQtyDisplay" class="px-3 py-0.5 rounded-full bg-sage-soft font-display font-bold text-sm text-chestnut">
+                      2 units
+                    </span>
+                  </div>
+                  <input id="calcQty" type="range" min="1" max="10" value="2" class="w-full cursor-pointer" />
+                  <div class="flex justify-between text-[11px] font-bold text-latte mt-1">
+                    <span>1</span>
+                    <span>5 (Squad)</span>
+                    <span>10</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Live Total Output Card -->
+            <div class="lg:col-span-5">
+              <div class="rounded-[32px] p-6 sm:p-8 border-2 space-y-5 shadow-sm"
+                   style="background-color: var(--bg-elevated); border-color: var(--border-fall);">
+                <div class="flex items-center justify-between border-b-2 pb-4" style="border-color: var(--border-fall);">
+                  <span class="text-xs font-extrabold uppercase tracking-wider text-latte">Estimated Total</span>
+                  <span id="calcSavingsBadge" class="hidden px-3 py-1 rounded-full bg-sage-soft text-chestnut font-display font-bold text-xs shadow-sm">
+                    Fall Promo Applied!
+                  </span>
+                </div>
+
+                <div>
+                  <p id="calcTotalPrice" class="font-display font-bold text-5xl sm:text-6xl text-chestnut tracking-tight">
+                    ₱320
+                  </p>
+                  <p id="calcBreakdownText" class="text-xs sm:text-sm font-bold text-latte mt-2">
+                    2 × Cozy PC &amp; Coffee Bar for 2 hours @ ₱80/hr
+                  </p>
+                </div>
+
+                <button type="button" id="applyToBookingBtn"
+                        class="w-full py-4 px-5 rounded-full font-display font-semibold text-sm sm:text-base text-white shadow-md transition-all hover:-translate-y-0.5 flex items-center justify-center gap-2 cursor-pointer"
+                        style="background-color: var(--accent-primary);">
+                  <span>Apply Estimate to Booking Form</span>
+                  <span>🍕</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         BOOKING / CONTACT SECTION (WITH VALIDATION & CONFIRMATION)
+         ====================================================================== -->
+    <section id="contact" class="py-20 sm:py-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-12 gap-12 items-start">
+
+          <!-- Left Column: Fall Cafe Info -->
+          <div class="lg:col-span-5 space-y-7">
+            <div class="space-y-3">
+              <span class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-wider bg-maple-soft text-chestnut">
+                <span>🍂</span>
+                <span>Booking &amp; Inquiries</span>
+              </span>
+              <h2 class="font-display font-bold text-3xl sm:text-5xl text-chestnut">
+                Save a Booth &amp; <span style="color: var(--accent-primary);">Pre-Order Treats</span>
+              </h2>
+              <p class="text-base text-latte font-semibold leading-relaxed">
+                Reserve your gaming station or squad pizza booth ahead of time, or ask us about group platters, coffee carafes, and seasonal specials.
+              </p>
+            </div>
+
+            <div class="space-y-4">
+              <!-- Location Placeholder -->
+              <div class="p-5 rounded-3xl bg-white border-2 flex items-start gap-4 shadow-sm" style="border-color: var(--border-fall);">
+                <div class="w-12 h-12 rounded-2xl bg-maple-soft flex items-center justify-center shrink-0 text-xl">
+                  📍
+                </div>
+                <div>
+                  <h4 class="font-display font-bold text-base text-chestnut">Cafe Location</h4>
+                  <!-- EDIT LOCATION PLACEHOLDER BELOW -->
+                  <p class="text-sm text-latte font-semibold mt-0.5">
+                    2nd Floor, Maple Hearth Arcade, Autumn Lane, Talisay City, Cebu
+                  </p>
+                </div>
+              </div>
+
+              <!-- Operating Hours -->
+              <div class="p-5 rounded-3xl bg-white border-2 flex items-start gap-4 shadow-sm" style="border-color: var(--border-fall);">
+                <div class="w-12 h-12 rounded-2xl bg-sage-soft flex items-center justify-center shrink-0 text-xl">
+                  🕒
+                </div>
+                <div>
+                  <h4 class="font-display font-bold text-base text-chestnut">Operating Hours</h4>
+                  <!-- EDIT OPERATING HOURS BELOW -->
+                  <p class="text-sm text-latte font-semibold mt-0.5">
+                    Mon – Thu: 10:00 AM – 11:00 PM<br />
+                    Fri – Sun: 10:00 AM – 2:00 AM
+                  </p>
+                </div>
+              </div>
+
+              <!-- Direct Contact -->
+              <div class="p-5 rounded-3xl bg-white border-2 flex items-start gap-4 shadow-sm" style="border-color: var(--border-fall);">
+                <div class="w-12 h-12 rounded-2xl bg-pumpkin-soft flex items-center justify-center shrink-0 text-xl">
+                  ☕
+                </div>
+                <div>
+                  <h4 class="font-display font-bold text-base text-chestnut">Phone &amp; Email</h4>
+                  <!-- EDIT CONTACT PLACEHOLDER BELOW -->
+                  <p class="text-sm text-latte font-semibold mt-0.5">
+                    +63 917 555 0198 • hello@marisukhfallcafe.ph
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Validated Reservation & Inquiry Form -->
+          <div class="lg:col-span-7">
+            <div class="rounded-[36px] p-6 sm:p-10 bg-white border-2 shadow-xl"
+                 style="border-color: var(--border-fall);">
+
+              <!-- Friendly On-Screen Confirmation Card -->
+              <div id="bookingSuccessBanner" class="hidden mb-6 p-6 rounded-3xl border-2 border-sage bg-sage-soft/70 space-y-3">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-2xl bg-white flex items-center justify-center text-xl shadow-sm">
+                      🍂
+                    </div>
+                    <div>
+                      <h4 class="font-display font-bold text-lg text-chestnut">Reservation Confirmed!</h4>
+                      <p class="text-xs font-extrabold text-latte">Reference ID: <span id="bookingRefCode" class="text-chestnut">MSK-FALL</span></p>
+                    </div>
+                  </div>
+                  <button type="button" id="closeSuccessBtn" aria-label="Close confirmation" class="w-8 h-8 rounded-full bg-white/80 hover:bg-white text-chestnut flex items-center justify-center text-sm font-bold cursor-pointer">
+                    ✕
+                  </button>
+                </div>
+                <p id="bookingSuccessDetails" class="text-sm font-semibold text-chestnut leading-relaxed"></p>
+              </div>
+
+              <!-- Booking Form -->
+              <form id="bookingForm" novalidate class="space-y-5">
+                <div class="grid sm:grid-cols-2 gap-5">
+                  <!-- Full Name -->
+                  <div>
+                    <label for="fullName" class="block text-xs font-extrabold uppercase tracking-wider text-chestnut mb-2">
+                      Full Name or Nickname <span class="text-maple">*</span>
+                    </label>
+                    <input type="text" id="fullName" name="fullName" placeholder="e.g., Clara Reyes"
+                           class="cozy-input w-full px-4 py-3.5 rounded-2xl font-semibold text-sm" required />
+                    <p id="error-fullName" class="hidden text-xs text-cinnamon font-extrabold mt-1.5"></p>
+                  </div>
+
+                  <!-- Email or Phone -->
+                  <div>
+                    <label for="contactInfo" class="block text-xs font-extrabold uppercase tracking-wider text-chestnut mb-2">
+                      Email or Phone Number <span class="text-maple">*</span>
+                    </label>
+                    <input type="text" id="contactInfo" name="contactInfo" placeholder="clara@email.com or 09171234567"
+                           class="cozy-input w-full px-4 py-3.5 rounded-2xl font-semibold text-sm" required />
+                    <p id="error-contactInfo" class="hidden text-xs text-cinnamon font-extrabold mt-1.5"></p>
+                  </div>
+                </div>
+
+                <div class="grid sm:grid-cols-3 gap-5">
+                  <!-- Station Choice -->
+                  <div>
+                    <label for="stationChoice" class="block text-xs font-extrabold uppercase tracking-wider text-chestnut mb-2">
+                      Station / Booth <span class="text-maple">*</span>
+                    </label>
+                    <select id="stationChoice" name="stationChoice" class="cozy-input w-full px-4 py-3.5 rounded-2xl font-bold text-sm cursor-pointer">
+                      <option value="Cozy PC & Coffee Bar">Cozy PC &amp; Coffee Bar</option>
+                      <option value="Hearthside Console Booth">Hearthside Console Booth</option>
+                      <option value="Autumn Arcade Corner">Autumn Arcade Corner</option>
+                      <option value="Private Squad & Pizza Table">Private Squad &amp; Pizza Table</option>
+                    </select>
+                  </div>
+
+                  <!-- Preferred Date -->
+                  <div>
+                    <label for="bookingDate" class="block text-xs font-extrabold uppercase tracking-wider text-chestnut mb-2">
+                      Preferred Date <span class="text-maple">*</span>
+                    </label>
+                    <input type="date" id="bookingDate" name="bookingDate"
+                           class="cozy-input w-full px-4 py-3.5 rounded-2xl font-bold text-sm" required />
+                    <p id="error-bookingDate" class="hidden text-xs text-cinnamon font-extrabold mt-1.5"></p>
+                  </div>
+
+                  <!-- Guests / Units -->
+                  <div>
+                    <label for="playerCount" class="block text-xs font-extrabold uppercase tracking-wider text-chestnut mb-2">
+                      Guests / Units <span class="text-maple">*</span>
+                    </label>
+                    <input type="number" id="playerCount" name="playerCount" min="1" max="20" value="2"
+                           class="cozy-input w-full px-4 py-3.5 rounded-2xl font-bold text-sm" required />
+                    <p id="error-playerCount" class="hidden text-xs text-cinnamon font-extrabold mt-1.5"></p>
+                  </div>
+                </div>
+
+                <!-- Coffee, Pizza & Inquiry Notes -->
+                <div>
+                  <label for="bookingNotes" class="block text-xs font-extrabold uppercase tracking-wider text-chestnut mb-2">
+                    Coffee, Pizza Order or Special Notes
+                  </label>
+                  <textarea id="bookingNotes" name="bookingNotes" rows="3"
+                            placeholder="e.g., 2 Cinnamon Maple Lattes, 1 Roasted Pumpkin Pizza, arriving around 4:30 PM."
+                            class="cozy-input w-full px-4 py-3.5 rounded-2xl font-semibold text-sm"></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit"
+                        class="w-full py-4 px-6 rounded-full font-display font-semibold text-base sm:text-lg text-white shadow-lg transition-all hover:-translate-y-0.5 cursor-pointer flex items-center justify-center gap-2.5"
+                        style="background-color: var(--accent-primary);">
+                  <span>Submit Reservation &amp; Inquiry</span>
+                  <span>🍂☕</span>
+                </button>
+              </form>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       FALL CAFE FOOTER
+       Customize operating hours, location placeholder, and social links below.
+       ======================================================================== -->
+  <footer class="border-t-2 pt-14 pb-10" style="background-color: var(--bg-surface); border-color: var(--border-fall);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b-2" style="border-color: var(--border-fall);">
+
+        <!-- Brand & Social Links -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-2.5">
+            <span class="w-9 h-9 rounded-2xl bg-maple-soft flex items-center justify-center text-lg">🍁</span>
+            <span class="font-display font-bold text-xl text-chestnut">Marisukh Game Center</span>
+          </div>
+          <p class="text-sm text-latte font-semibold leading-relaxed">
+            A cozy autumn gaming cafe serving fresh coffee, wood-fired style pizza, and comfort food in a warm community lounge.
+          </p>
+          <div class="flex items-center gap-2.5 pt-1">
+            <a href="#contact" aria-label="Instagram" class="w-10 h-10 rounded-full bg-maple-soft/80 hover:bg-maple-soft flex items-center justify-center text-chestnut transition-transform hover:scale-110">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="#contact" aria-label="TikTok" class="w-10 h-10 rounded-full bg-sage-soft/80 hover:bg-sage-soft flex items-center justify-center text-chestnut transition-transform hover:scale-110">
+              <i class="fa-brands fa-tiktok"></i>
+            </a>
+            <a href="#contact" aria-label="Discord" class="w-10 h-10 rounded-full bg-pumpkin-soft/80 hover:bg-pumpkin-soft flex items-center justify-center text-chestnut transition-transform hover:scale-110">
+              <i class="fa-brands fa-discord"></i>
+            </a>
+            <a href="#contact" aria-label="Facebook" class="w-10 h-10 rounded-full bg-maple-soft/80 hover:bg-maple-soft flex items-center justify-center text-chestnut transition-transform hover:scale-110">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <div>
+          <h4 class="font-display font-bold text-base text-chestnut mb-4">Quick Links</h4>
+          <ul class="space-y-2.5 text-sm font-bold text-latte">
+            <li><a href="#home" class="hover:text-maple transition-colors">Home</a></li>
+            <li><a href="#stations" class="hover:text-maple transition-colors">Stations &amp; Cafe Menu</a></li>
+            <li><a href="#rates" class="hover:text-maple transition-colors">Rates &amp; Bundles</a></li>
+            <li><a href="#contact" class="hover:text-maple transition-colors">Booking/Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Operating Hours Placeholder -->
+        <div>
+          <h4 class="font-display font-bold text-base text-chestnut mb-4">Operating Hours</h4>
+          <ul class="space-y-2 text-sm font-semibold text-latte">
+            <li><strong class="text-chestnut">Mon – Thu:</strong> 10:00 AM – 11:00 PM</li>
+            <li><strong class="text-chestnut">Fri – Sat:</strong> 10:00 AM – 2:00 AM</li>
+            <li><strong class="text-chestnut">Sunday:</strong> 10:00 AM – 12:00 AM</li>
+            <li class="text-xs font-extrabold text-sage pt-1">☕ Espresso &amp; Pizza Kitchen Open Daily</li>
+          </ul>
+        </div>
+
+        <!-- Location Placeholder -->
+        <div>
+          <h4 class="font-display font-bold text-base text-chestnut mb-4">Location</h4>
+          <p class="text-sm font-semibold text-latte leading-relaxed">
+            2nd Floor, Maple Hearth Arcade<br />
+            Autumn Lane, Cafe District<br />
+            Talisay City, Cebu 6045
+          </p>
+          <p class="text-xs font-extrabold text-maple mt-3">
+            🍕 Dine-In Booths &amp; Desk Delivery
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Copyright -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-bold text-latte">
+        <p>&copy; <span id="currentYear">2026</span> Marisukh Game Center. All rights reserved.</p>
+        <p>Warm coffee, crispy pizza, and friendly fall matches.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       JAVASCRIPT INTERACTIVITY
+       1. Theme Mode Switcher ("Cinnamon Maple" vs "Pumpkin Sage")
+       2. Mobile Menu Toggle
+       3. Interactive Rate & Cafe Combo Estimator + Apply to Booking Form
+       4. Booking Form Validation & On-Screen Confirmation Card
+       ======================================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Set current year in footer
+      document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+      // Default preferred date to today
+      const bookingDateInput = document.getElementById('bookingDate');
+      if (bookingDateInput) {
+        const today = new Date().toISOString().split('T')[0];
+        bookingDateInput.value = today;
+        bookingDateInput.min = today;
+      }
+
+      /* ----------------------------------------------------------------------
+         1. THEME MODE SWITCHER ("Cinnamon Maple" vs "Pumpkin Sage")
+         ---------------------------------------------------------------------- */
+      const themeToggleBtn = document.getElementById('themeToggleBtn');
+      const themeEmoji = document.getElementById('themeEmoji');
+      const themeLabel = document.getElementById('themeLabel');
+
+      themeToggleBtn.addEventListener('click', () => {
+        const isPumpkinSage = document.body.classList.toggle('pumpkin-sage-mode');
+
+        if (isPumpkinSage) {
+          themeEmoji.textContent = '🌿';
+          themeLabel.textContent = 'Pumpkin Sage';
+        } else {
+          themeEmoji.textContent = '🍁';
+          themeLabel.textContent = 'Cinnamon Maple';
+        }
+      });
+
+      /* ----------------------------------------------------------------------
+         2. MOBILE MENU TOGGLE
+         ---------------------------------------------------------------------- */
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileMenuIcon = document.getElementById('mobileMenuIcon');
+      const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+      mobileMenuBtn.addEventListener('click', () => {
+        const isHidden = mobileMenu.classList.toggle('hidden');
+        mobileMenuIcon.className = isHidden ? 'fa-solid fa-bars' : 'fa-solid fa-xmark';
+      });
+
+      mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          mobileMenuIcon.className = 'fa-solid fa-bars';
+        });
+      });
+
+      /* ----------------------------------------------------------------------
+         3. INTERACTIVE RATE & CAFE COMBO CALCULATOR
+         Beginners: Customize currency symbol and bundle prices below.
+         ---------------------------------------------------------------------- */
+      const CURRENCY = '₱';
+      const COFFEE_COMBO_PER_UNIT = 75;
+      const BARKADA_PIZZA_FLAT = 320;
+
+      const calcStation = document.getElementById('calcStation');
+      const calcPromo = document.getElementById('calcPromo');
+      const calcHours = document.getElementById('calcHours');
+      const calcQty = document.getElementById('calcQty');
+
+      const calcHoursDisplay = document.getElementById('calcHoursDisplay');
+      const calcQtyDisplay = document.getElementById('calcQtyDisplay');
+      const calcTotalPrice = document.getElementById('calcTotalPrice');
+      const calcBreakdownText = document.getElementById('calcBreakdownText');
+      const calcSavingsBadge = document.getElementById('calcSavingsBadge');
+      const applyToBookingBtn = document.getElementById('applyToBookingBtn');
+
+      let latestEstimateSummary = '';
+
+      function updateComboCalculator() {
+        const hourlyRate = parseFloat(calcStation.value);
+        const selectedOption = calcStation.options[calcStation.selectedIndex];
+        const stationName = selectedOption.getAttribute('data-name');
+        const hours = parseInt(calcHours.value, 10);
+        const qty = parseInt(calcQty.value, 10);
+        const promoType = calcPromo.value;
+
+        calcHoursDisplay.textContent = `${hours} ${hours === 1 ? 'hr' : 'hrs'}`;
+        calcQtyDisplay.textContent = `${qty} ${qty === 1 ? 'unit' : 'units'}`;
+
+        const basePlayCost = hourlyRate * hours * qty;
+        let finalTotal = basePlayCost;
+        let addonNote = '';
+        let discountSaved = 0;
+
+        if (promoType === 'coffee_combo') {
+          const comboCost = COFFEE_COMBO_PER_UNIT * qty;
+          finalTotal = basePlayCost + comboCost;
+          addonNote = ` + ${qty} Coffee & Pastry Combo (${CURRENCY}${comboCost})`;
+        } else if (promoType === 'barkada_pizza') {
+          finalTotal = basePlayCost + BARKADA_PIZZA_FLAT;
+          addonNote = ` + Barkada Pizza Feast (${CURRENCY}${BARKADA_PIZZA_FLAT})`;
+        } else if (promoType === 'weekend_fall') {
+          discountSaved = Math.round(basePlayCost * 0.15);
+          finalTotal = basePlayCost - discountSaved;
+          addonNote = ' (15% Fall Weekend Play discount applied)';
+        }
+
+        finalTotal = Math.round(finalTotal);
+        calcTotalPrice.textContent = `${CURRENCY}${finalTotal.toLocaleString()}`;
+
+        if (discountSaved > 0) {
+          calcSavingsBadge.textContent = `Save ${CURRENCY}${discountSaved.toLocaleString()} on Play!`;
+          calcSavingsBadge.classList.remove('hidden');
+        } else if (promoType === 'coffee_combo' || promoType === 'barkada_pizza') {
+          calcSavingsBadge.textContent = 'Cafe Combo Included!';
+          calcSavingsBadge.classList.remove('hidden');
+        } else {
+          calcSavingsBadge.classList.add('hidden');
+        }
+
+        const summary = `${qty} × ${stationName} for ${hours} ${hours === 1 ? 'hr' : 'hrs'} @ ${CURRENCY}${hourlyRate}/hr${addonNote}`;
+        calcBreakdownText.textContent = summary;
+        latestEstimateSummary = `Estimated Total: ${CURRENCY}${finalTotal.toLocaleString()} — ${summary}`;
+      }
+
+      [calcStation, calcPromo, calcHours, calcQty].forEach(el => {
+        el.addEventListener('input', updateComboCalculator);
+        el.addEventListener('change', updateComboCalculator);
+      });
+
+      updateComboCalculator();
+
+      // Transfer calculator estimate directly into the booking form
+      applyToBookingBtn.addEventListener('click', () => {
+        const selectedOption = calcStation.options[calcStation.selectedIndex];
+        const stationName = selectedOption.getAttribute('data-name');
+
+        document.getElementById('stationChoice').value = stationName;
+        document.getElementById('playerCount').value = calcQty.value;
+        document.getElementById('bookingNotes').value = latestEstimateSummary;
+
+        document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+      });
+
+      /* ----------------------------------------------------------------------
+         4. BOOKING FORM VALIDATION & ON-SCREEN CONFIRMATION
+         ---------------------------------------------------------------------- */
+      const bookingForm = document.getElementById('bookingForm');
+      const successBanner = document.getElementById('bookingSuccessBanner');
+      const successDetails = document.getElementById('bookingSuccessDetails');
+      const bookingRefCode = document.getElementById('bookingRefCode');
+      const closeSuccessBtn = document.getElementById('closeSuccessBtn');
+
+      function showFieldError(inputId, message) {
+        const inputEl = document.getElementById(inputId);
+        const errorEl = document.getElementById(`error-${inputId}`);
+        if (inputEl) inputEl.classList.add('input-error');
+        if (errorEl) {
+          errorEl.textContent = message;
+          errorEl.classList.remove('hidden');
+        }
+      }
+
+      function clearFieldErrors() {
+        ['fullName', 'contactInfo', 'bookingDate', 'playerCount'].forEach(id => {
+          const inputEl = document.getElementById(id);
+          const errorEl = document.getElementById(`error-${id}`);
+          if (inputEl) inputEl.classList.remove('input-error');
+          if (errorEl) {
+            errorEl.textContent = '';
+            errorEl.classList.add('hidden');
+          }
+        });
+      }
+
+      bookingForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        clearFieldErrors();
+
+        const fullName = document.getElementById('fullName').value.trim();
+        const contactInfo = document.getElementById('contactInfo').value.trim();
+        const stationChoice = document.getElementById('stationChoice').value;
+        const bookingDate = document.getElementById('bookingDate').value;
+        const playerCount = parseInt(document.getElementById('playerCount').value, 10);
+
+        let isValid = true;
+
+        if (fullName.length < 2) {
+          showFieldError('fullName', 'Please enter your name or nickname (at least 2 characters).');
+          isValid = false;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const phoneRegex = /^[0-9+\-\s()]{7,18}$/;
+        if (!emailRegex.test(contactInfo) && !phoneRegex.test(contactInfo)) {
+          showFieldError('contactInfo', 'Please enter a valid email address or phone number.');
+          isValid = false;
+        }
+
+        if (!bookingDate) {
+          showFieldError('bookingDate', 'Please choose a preferred date.');
+          isValid = false;
+        }
+
+        if (isNaN(playerCount) || playerCount < 1 || playerCount > 20) {
+          showFieldError('playerCount', 'Please enter a guest/unit count between 1 and 20.');
+          isValid = false;
+        }
+
+        if (isValid) {
+          const refCode = 'FALL-' + Math.floor(1000 + Math.random() * 9000);
+          bookingRefCode.textContent = refCode;
+
+          successDetails.innerHTML = `
+            Thank you, <strong>${fullName}</strong>! Your request for 
+            <strong>${playerCount} × ${stationChoice}</strong> on <strong>${bookingDate}</strong> has been received. 
+            Our cafe team will reach out via <strong>${contactInfo}</strong> to confirm your booth, coffee, and pizza order. 🍂☕🍕
+          `;
+
+          successBanner.classList.remove('hidden');
+          successBanner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          bookingForm.reset();
+
+          document.getElementById('bookingDate').value = new Date().toISOString().split('T')[0];
+          document.getElementById('playerCount').value = 2;
+        }
+      });
+
+      closeSuccessBtn.addEventListener('click', () => {
+        successBanner.classList.add('hidden');
+      });
+    });
+  </script>
+</body>
+</html>
